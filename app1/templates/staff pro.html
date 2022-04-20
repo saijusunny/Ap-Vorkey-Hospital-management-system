@@ -1,0 +1,59 @@
+{% extends 'base staff.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container-fluid" style="background-color: rgb(20, 19, 19); height: auto;">
+  {% for i in ps %}
+<div class="row" style="background-color: black;">
+  <div class="col-sm-12">
+    <h1 style="text-align: center; color: yellow;">PROFILE</h1>
+  </div>
+</div>
+
+<div class="row" style="height: auto;">
+  <div class="col-sm-4" style="padding-top: 3%; padding-bottom: 8%; text-align: center; background-color: black;">
+    
+        {% if i.item == 'static/image/icon.png' %}
+        <img src="{% static 'image/icon.png' %}" class="w-75 img-rounded">
+
+      {% else %}
+      
+        <img src="{{i.item.url}}" class="rounded-circle" style="width: 55%;">
+
+      {% endif %}
+      <div style="text-align: center;"> 
+        <label style="color: yellow;font-size: 20px; font-weight: bold; ">Name:</label>
+        <label style="color: white; font-size: 20px; font-weight: bold; ;">{{i.name}}</label><br>
+        <label style="color: yellow;font-size: 20px; font-weight: bold;"> User Name:</label>
+        <label style="color: white;font-size: 20px; font-weight: bold; ">{{i.username}}</label><br>
+        <label style="color: yellow;font-size: 20px; font-weight: bold;">Password:</label>
+        <label style="color: white;font-size: 20px; font-weight: bold; ">{{i.password}}</label><br>
+        <label style="color: yellow;font-size: 20px; font-weight: bold;">Email:</label>
+        <label style="color: white;font-size: 20px; font-weight: bold; ">{{i.mail}}</label><br>
+        <label style="color: yellow;font-size: 20px; font-weight: bold; ">Mobile:</label>
+        <label style="color: white;font-size: 20px; font-weight: bold; ">{{i.number}}</label><br>
+        <label style="color: yellow;font-size: 20px; font-weight: bold;">Section:</label>
+        <label style="color: white;font-size: 20px; font-weight: bold; ">{{i.section.Section_name}}</label>
+      </div>
+
+
+  </div>
+  <div class="col-sm-8" style="text-align: center; padding-top: 15%;">
+    <div>
+      <h1 style="color: green;"> Hai {{i.name}}</h1>
+      <h4 style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nisi obcaecati cupiditate, consequuntur autem inventore magni reiciendis ex voluptatem quo? Veritatis ad asperiores ut tempora consequatur magni deserunt doloribus non?</h4>
+
+    </div>
+  </div>
+</div>
+  
+  
+
+
+
+        {% endfor %}
+
+
+{% endblock %}

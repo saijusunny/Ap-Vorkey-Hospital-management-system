@@ -1,0 +1,80 @@
+{% extends 'base doctor.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+        {% for message in messages %}
+            <h5>
+                <div class="alert alert-danger" style="text-align: center;">
+                {{ message}}
+                </div>
+            </h5>
+        {%endfor%}
+      
+        </div>
+      </div>
+    <div class="row" style="background-color: black; text-align: center;" >
+        <div class="col-sm-8" style="margin: 0 auto;">
+            <form action="{% url 'patient_flt'%}" class="form" method="POST">
+                {% csrf_token%}
+                <select name="sct" style="margin-top: 1%;" class="form-control" style="color:black; font-weight:bold"  class="form-control">
+                    <option style="color:black; font-weight:bold"> Enter Your Section</option>
+                    <option style="color:black; font-weight:bold"> All Sections</option>
+                    {% for section in stc %}
+                    
+                    <option value="{{section.id}}" style="color:black; font-weight:bold">{{ section.Section_name}}</option>
+                    {%endfor%}
+                </select><br>
+                <input type="submit" value="Search" class="btn btn-success" id="">
+            </form>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-sm-12"  style="background-color: black; margin:0 auto">
+
+            <table class="table" style="text-align: center;">
+                <h1 style="color: white; margin-top: 1%; margin-bottom: 3%; text-align: center;">Patient Details </h1>
+                <thead>
+                    <tr>
+                        <th  style="color: yellow;">ID</th>
+                        <th style="color: yellow;">NAME</th>
+                        <th style="color: yellow;">ADDRESS</th>
+                        <th style="color: yellow;">MOBILE NUMBER</th>
+                        <th style="color: yellow;">EMAIL</th>
+                        <th style="color: yellow;">AGE</th>
+                        <th style="color: yellow;">SECTION</th>
+                        <th style="color: yellow;">DESICION</th>
+
+                        <!-- <th style="color: yellow;">ACTION</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in lkt %}
+                    <tr>
+                        <td style="color:rgb(255, 255, 255);">{{i.id}}</td>
+                        <td style="color:rgb(255, 255, 255);">{{i.name}}</td>
+                        <td style="color:rgb(255, 255, 255);">{{i.address}}</td>
+                        <td style="color:rgb(255, 255, 255);">{{i.mobile}}</td>
+                        <td style="color:rgb(255, 255, 255);">{{i.email}}</td>
+                        <td style="color:rgb(255, 255, 255);">{{i.age}}</td>
+                        <td style="color:rgb(255, 255, 255);">{{i.section.Section_name}}</td>
+                        <td>
+                            <a href="{% url 'aprove' i.id%}"><button type="submit" class="btn btn-success btn-sm mx-5 my-3"> Approve </button></a><br>
+
+                           <a href="{% url 'delete_patient' i.id%}"><button type="submit" class="btn btn-danger btn-sm mx-5 my-3" onclick="alert('Declain Aprovel')"> Declain </button></a>
+                        </td>
+                       
+                    </tr>
+                    {% empty %}
+                    <h2 style="margin-top: 5%; text-align: center; color: red;">
+                        No Patients
+                    </h2>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
