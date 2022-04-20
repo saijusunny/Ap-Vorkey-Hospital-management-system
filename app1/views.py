@@ -105,7 +105,7 @@ def signup_all(request):
                 else:
                     messages.info(request, 'Password doesnot match!!!!!')
                     return redirect('staffreg')
-                return redirect('staff_login')
+                return redirect('logs_all')
             elif destination=="DOCTOR":
                 nm=request.POST['name']
                 username=request.POST['username']
@@ -122,7 +122,7 @@ def signup_all(request):
                 if password==cpass:
                     if doctor.objects.filter(username=username).exists():
                         messages.info(request, 'This Username Is Already Exists!!!!!')
-                        return redirect('signup')
+                        return redirect('sign_all')
                     else:
                         user=doctor(
                             name=nm,
@@ -137,7 +137,7 @@ def signup_all(request):
                 else:
                     messages.info(request, 'Password doesnot match!!!!!')
                     return redirect('log')
-                return redirect('doctor_login')
+                return redirect('logs_all')
      
 
             else:
@@ -145,7 +145,7 @@ def signup_all(request):
 
         
     else:
-        return render(request, 'signup.html')
+        return render(request, 'sign_all')
 
 def index(request):
     return render(request, 'index.html')
