@@ -728,7 +728,6 @@ def admin_delete_staff(request,pk):
     else:
         pass
     products.delete()
-    products.delete()
     return redirect('admin_staff_view')
 
 
